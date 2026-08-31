@@ -1,9 +1,11 @@
-print("What is your age?")
-age = int(input("Enter your age: "))
+while True:
+    print("What is your age?")
+    age = int(input("Enter your age: "))
 
-if age >= 21:
-    print("You may have a beer!")
-else:
-    print("You are too young, get the hell out!")
+    if age >= 21:
+        print("You may have a beer!")
+    else:
+        print("You are too young, get the hell out!")
 
-    
+    if age == 666:
+        break # Exits out of the loop completely. 
