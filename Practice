@@ -1,0 +1,8 @@
+print("What is your age?")
+age = input("Enter your age: ")
+
+if age >= 21:
+    print("You may have a beer!")
+else:
+    print("You are too young, get the hell out!")
+    
