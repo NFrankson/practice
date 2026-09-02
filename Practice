@@ -1,11 +1,12 @@
-while True:
-    print("What is your age?")
-    age = int(input("Enter your age: "))
+print("What is your age?")
 
+def check_age(age):   
     if age >= 21:
         print("You may have a beer!")
     else:
-        print("You are too young, get the hell out!")
+        print("You are too young, get the hell out!") 
 
-    if age == 666:
-        break # Exits out of the loop completely. 
+result = check_age(int(input("Enter your age: ")))
+
+print(result)
+
