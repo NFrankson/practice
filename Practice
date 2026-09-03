@@ -6,8 +6,10 @@ def check_age(age):
     else:
         print("You are too young, get the hell out!") 
 
-while (True):
+def age_question():
     print("What is your age?")
     result = check_age(int(input("Enter your age: ")))
-    print(result)
-    time.sleep(1.0) #Delays the question by a second. 
+    print(f"You entered: {result}")
+    time.sleep(1.0) #Delays the question by a second.
+
+age_question() 
