@@ -1,15 +1,30 @@
 import time
 
+def age_prompt():
+    print("What is your age?")
+    return(int(input("Enter your age: ")))
+
+def check_name():
+    name = input("What is your name? ")
+    print(f"Welcome to the club, {name}! Enjoy your beer.")
+
 def check_age(age):   
     if age >= 21:
         print("You may have a beer!")
+        check_name() #This calls for the name function
     else:
         print("You are too young, get the hell out!") 
 
-def age_question():
-    print("What is your age?")
-    result = check_age(int(input("Enter your age: ")))
-    print(f"You entered: {result}")
-    time.sleep(1.0) #Delays the question by a second.
+def user_prompt_1():
+    age = age_prompt()
+    print(f"You entered: {age}")
+    result = check_age(age)
 
-age_question() 
+def user_prompt_2():
+    # first check the user's age
+    age = age_prompt()
+    print(f"You entered: {age}")
+    check_age(age)
+
+user_prompt_1() # calls upon the user prompt function
+     
