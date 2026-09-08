@@ -1,4 +1,9 @@
 import time
+from pick import pick
+
+# Beer list defined
+options = ["Coors", "Budweiser", "Local IPA", "Pabst Blue Ribbon", "Heineken"]
+
 
 def age_prompt():
     print("What is your age?")
@@ -8,10 +13,16 @@ def check_name():
     name = input("What is your name? ")
     print(f"Welcome to the club, {name}! Enjoy your beer.")
 
+def beer_prompt():
+    print("Please choose your option from our menu (Use UP/DOWN arrows, press ENTER to select): ")
+    option, index = pick(options, indicator="=>", default_index=0)
+    print(f"You selected: {option} (Index: {index})")
+
 def check_age(age):   
     if age >= 21:
         print("You may have a beer!")
         check_name() #This calls for the name function
+        beer_prompt() #This calls for the beer list function
     else:
         print("You are too young, get the hell out!") 
 
