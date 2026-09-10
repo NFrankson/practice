@@ -1,8 +1,9 @@
 import time
-from pick import pick
+import json
+import curses
 
-# Beer list defined
-options = ["Coors", "Budweiser", "Local IPA", "Pabst Blue Ribbon", "Heineken"]
+
+
 
 
 def age_prompt():
@@ -14,15 +15,49 @@ def check_name():
     print(f"Welcome to the club, {name}! Enjoy your beer.")
 
 def beer_prompt():
-    print("Please choose your option from our menu (Use UP/DOWN arrows, press ENTER to select): ")
-    option, index = pick(options, indicator="=>", default_index=0)
-    print(f"You selected: {option} (Index: {index})")
+    # Hide the blinking text cursor
+    curses.curs_set(0)
+
+    options = ["Coors", "Budweiser", "Local IPA", "Pabst Blue Ribbon", "Heineken"]
+    current_row = 0
+
+    while True:
+        stdscr.clear()
+        stdscr.addstr("Use UP/DOWN arrows to navigate. Press ENTER to selection:\n\n")
+
+        # Render the list
+        for idx, element in enumerate(options):
+            if idx == current_row:
+                # Highlight the selected row
+                stdscr.addstr(f" > {element}\n", curses.A_REVERSE)
+            else:
+                stdscr.addstr(f"    {element}\n")
+
+            stdscr.refresh()
+
+            # Wait for user key press
+            key = stdscr.getch()
+
+            # Handle arrow keys and enter key
+            if key == curses.KEY_UP and current_row > 0:
+                current_row -= 1
+            elif key == curses.KEY_DOWN and current_row < len(options) - 1:
+                current_row += 1
+            elif key in [curses.KEY_ENTER, 10, 13]: #10 and 13 are Enter key codes
+                break
+
+        # Return the final choice
+        return options[current_row]
+    
+
+ 
 
 def check_age(age):   
     if age >= 21:
         print("You may have a beer!")
         check_name() #This calls for the name function
-        beer_prompt() #This calls for the beer list function
+        selected_choice = curses.wrapper(beer_prompt)
+        print(f"You selected: {selected_choice}")
     else:
         print("You are too young, get the hell out!") 
 
